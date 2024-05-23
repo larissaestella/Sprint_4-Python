@@ -1,0 +1,17 @@
+[
+    {
+        "Nome completo": "Larissa Estella",
+        "CPF": "555.444.888-77",
+        "Data_de_nascimento": "23/06/2004",
+        "Idade": 19,
+        "Sexo": "F",
+        "Email": "larissa@gmail.com",
+        "Celular": "+5511948983450",
+        "Procedimento": {
+            "Nome do procedimento": "Eletrocardiograma",
+            "Explica\u00e7\u00e3o do procedimento": "Um eletrocardiograma (ECG) \u00e9 um exame m\u00e9dico que registra a atividade el\u00e9trica do cora\u00e7\u00e3o ao longo do tempo. Ele \u00e9\nrealizado colocando eletrodos na pele do paciente, geralmente no peito, bra\u00e7os e pernas, que captam os sinais el\u00e9tricos\ndo cora\u00e7\u00e3o. Esses sinais s\u00e3o ent\u00e3o registrados em um gr\u00e1fico chamado de tra\u00e7ado, que mostra a atividade el\u00e9trica do\ncora\u00e7\u00e3o em forma de ondas. O ECG \u00e9 usado para diagnosticar problemas card\u00edacos, como arritmias, doen\u00e7as das art\u00e9rias\ncoron\u00e1rias e outros dist\u00farbios do ritmo card\u00edaco.",
+            "Data do exame": "28/05/2024",
+            "Hora do exame": "11:30"
+        }
+    }
+]
