@@ -2,50 +2,33 @@ import json
 from datetime import datetime, timedelta
 import pywhatkit as pwk
 
-# Função para obter os dados do paciente do usuário
-def obter_dados_paciente():
+
+def obter_dados_paciente(): # Função para obter os dados do paciente do usuário
     dados_paciente = {}
-    
-    # Solicita o nome completo do paciente e capitaliza cada palavra
     nome_completo = input("Digite o nome completo do paciente: ")
-    nome_completo = ' '.join(word.capitalize() for word in nome_completo.split())
+    nome_completo = ' '.join(word.capitalize() for word in nome_completo.split()) # Primeira letra maiúscula de cada palavra
     dados_paciente['Nome completo'] = nome_completo
-    
-    # Solicita o CPF e formata o número
     cpf = input("Digite o CPF do paciente: ")
-    cpf = ''.join(filter(str.isdigit, cpf))
-    cpf = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
+    cpf = ''.join(filter(str.isdigit, cpf)) # Remove qualquer caracter que não seja dígito
+    cpf = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}" # Formatação do CPF (xxx.xxx.xxx-xx)
     dados_paciente['CPF'] = cpf
-    
-    # Solicita a data de nascimento do paciente
     dados_paciente['Data_de_nascimento'] = input("Digite a data de nascimento do paciente (dd/mm/aaaa): ")
-    
-    # Calcula a idade do paciente com base na data de nascimento
     dados_paciente['Idade'] = calcular_idade(dados_paciente['Data_de_nascimento'])
-    
-    # Solicita o sexo do paciente e converte para maiúsculas
     dados_paciente['Sexo'] = input("Digite o sexo do paciente (M/F):").upper()
-    
-    # Solicita o email do paciente
     dados_paciente['Email'] = input("Digite o email do paciente: ")
-    
-    # Solicita o número de celular do paciente e formata o número
     celular = input("Digite o número de celular do paciente (inclua o código do país +55): ")
     celular = ''.join(filter(str.isdigit, celular))
     celular = f"+{celular}"
     dados_paciente['Celular'] = celular
-    
     return dados_paciente
 
-# Função para calcular a idade do paciente com base na data de nascimento
-def calcular_idade(Data_de_nascimento):
+def calcular_idade(Data_de_nascimento): # Função para calcular a idade do paciente com base na data de nascimento
     hoje = datetime.today()
     data_nasc = datetime.strptime(Data_de_nascimento, "%d/%m/%Y")
     idade = hoje.year - data_nasc.year - ((hoje.month, hoje.day) < (data_nasc.month, data_nasc.day))
     return idade
 
-# Função para exibir o menu de procedimentos
-def menu_procedimentos():
+def menu_procedimentos(): # Função para escolher o procedimento que o paciente terá que fazer 
     print("\nEscolha o procedimento que você precisa fazer:")
     print("1. Hemograma")
     print("2. Tomografia")
@@ -53,8 +36,7 @@ def menu_procedimentos():
     print("4. Eletrocardiograma")
     print("5. Sair")
 
-# Função para obter a explicação do procedimento escolhido
-def obter_explicacao_procedimento(procedimento):
+def obter_explicacao_procedimento(procedimento): # Função para obter a explicação do procedimento escolhido
     explicacoes = {
         "1": ("Hemograma", "Um hemograma é um exame de sangue que avalia os componentes do sangue, como glóbulos vermelhos (que transportam oxigênio),"
               "\nglóbulos brancos (que combatem infecções) e plaquetas (que ajudam na coagulação). É um procedimento que permite analisar "
@@ -95,7 +77,7 @@ def validar_hora(hora):
     except ValueError:
         return False
 
-# Função para enviar a mensagem do WhatsApp
+# Função para enviar a mensagem para o WhatsApp
 def enviar_mensagem_whatsapp(celular, nome_procedimento, explicacao_procedimento, data_exame, hora_exame):
     mensagem = (f"Nome do procedimento: {nome_procedimento}\n"
                 f"Explicação: {explicacao_procedimento}\n"
@@ -106,12 +88,11 @@ def enviar_mensagem_whatsapp(celular, nome_procedimento, explicacao_procedimento
     hora_envio = agora + timedelta(minutes=1)
     pwk.sendwhatmsg(celular, mensagem, hora_envio.hour, hora_envio.minute)
 
-# Função principal do programa
-def main():
-    pacientes = []
-    while True:
+def main(): # Função principal do cadastro do paciente 
+    pacientes = [] # Lista vazia para armazenar os pacientes
+    while True: # Loop infinito para continuar o cadastro de pacientes até que o usuário decida parar
         print("\n--- Cadastro de Paciente ---")
-        paciente = obter_dados_paciente()
+        paciente = obter_dados_paciente() # Chama a função para obter os dados do paciente
         paciente_data = {
             "Nome completo": paciente['Nome completo'],
             "CPF": paciente['CPF'],
@@ -122,10 +103,10 @@ def main():
             "Celular": paciente['Celular'],
             "Procedimento": {}
         }
-        while True:
-            menu_procedimentos()
-            procedimento = input("Escolha o procedimento desejado (1-5): ")
-            if procedimento == '5':
+        while True: # Loop interno para escolher os procedimentos para o paciente
+            menu_procedimentos()  # Exibe o menu de procedimentos 
+            procedimento = input("Escolha o procedimento desejado (1-5): ") # Solicita a escolha do procedimento
+            if procedimento == '5': # Se a opção for '5', sai do loop interno
                 break
             nome_procedimento, explicacao = obter_explicacao_procedimento(procedimento)
             
@@ -154,16 +135,15 @@ def main():
             # Envia a mensagem do WhatsApp com os detalhes do procedimento
             enviar_mensagem_whatsapp(paciente_data["Celular"], nome_procedimento, explicacao, data_exame, hora_exame)
         pacientes.append(paciente_data)
-        continuar = input("\nDeseja cadastrar outro paciente? (S/N): ").upper()
-        if continuar != 'S':
+        continuar = input("\nDeseja cadastrar outro paciente? (S/N): ").upper() # Pergunta se o usuário deseja cadastrar outro paciente
+        if continuar != 'S': # Se a resposta não for 'S', sai do loop principal
             break
-    # Salva os dados dos pacientes em um arquivo JSON
-    with open('pacientes.json', 'w') as json_file:
+    with open('pacientes.json', 'w') as json_file: # Salva os dados dos pacientes em um arquivo JSON
         json.dump(pacientes, json_file, indent=4)
     
     # Exibe a lista de pacientes cadastrados
     print("\n--- Lista de Pacientes Cadastrados ---")
-    for idx, paciente in enumerate(pacientes, start=1):
+    for idx, paciente in enumerate(pacientes, start=1): 
         print(f"\nPaciente {idx}:")
         for chave, valor in paciente.items():
             if chave == "Procedimento":
@@ -174,4 +154,4 @@ def main():
                 print(f"{chave.capitalize()}: {valor}")
 
 if __name__ == "__main__":
-    main()
+    main() # Chama a função principal quando o script é executado
