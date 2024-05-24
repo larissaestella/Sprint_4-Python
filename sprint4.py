@@ -38,26 +38,10 @@ def menu_procedimentos(): # Função para escolher o procedimento que o paciente
 
 def obter_explicacao_procedimento(procedimento): # Função para obter a explicação do procedimento escolhido
     explicacoes = {
-        "1": ("Hemograma", "Um hemograma é um exame de sangue que avalia os componentes do sangue, como glóbulos vermelhos (que transportam oxigênio),"
-              "\nglóbulos brancos (que combatem infecções) e plaquetas (que ajudam na coagulação). É um procedimento que permite analisar "
-              "\ndiversos aspectos da saúde por meio da análise do sangue, é usado para diagnosticar anemias,"
-              "\ninfecções, distúrbios da coagulação e problemas imunológicos."),
-        "2": ("Tomografia", "A tomografia computadorizada, é um exame médico que utiliza raios-X para criar imagens detalhadas do interior do corpo."
-              "\nEla produz imagens do corpo, que permitem aos médicos visualizar estruturas como ossos, tecidos moles e órgãos. Essas"
-              "\nimagens são geradas através de um processo computadorizado que combina várias imagens de raios-X tiradas de diferentes"
-              "\nângulos. A tomografia é amplamente utilizada para diagnosticar uma variedade de condições médicas, desde lesões"
-              "\ntraumáticas até câncer, e é uma ferramenta valiosa na avaliação de muitos tipos de doenças e lesões."),
-        "3": ("Ressonância Magnética", "A ressonância magnética (RM) é um exame de imagem que utiliza campos magnéticos e ondas de rádio para gerar imagens"
-              "\ndetalhadas do interior do corpo. Diferente da tomografia computadorizada (TC), a RM não utiliza radiação ionizante."
-              "\nEm vez disso, ela produz imagens de alta resolução dos tecidos moles, como músculos, ligamentos e órgãos internos."
-              "\nA ressonância magnética é frequentemente usada para diagnosticar uma variedade de condições, incluindo lesões"
-              "\nmusculoesqueléticas, doenças neurológicas e problemas vasculares, oferecendo informações valiosas para os médicos no"
-              "\nplanejamento de tratamentos e procedimentos cirúrgicos."),
-        "4": ("Eletrocardiograma", "Um eletrocardiograma (ECG) é um exame médico que registra a atividade elétrica do coração ao longo do tempo. Ele é"
-              "\nrealizado colocando eletrodos na pele do paciente, geralmente no peito, braços e pernas, que captam os sinais elétricos"
-              "\ndo coração. Esses sinais são então registrados em um gráfico chamado de traçado, que mostra a atividade elétrica do"
-              "\ncoração em forma de ondas. O ECG é usado para diagnosticar problemas cardíacos, como arritmias, doenças das artérias"
-              "\ncoronárias e outros distúrbios do ritmo cardíaco.")
+        "1": ("Hemograma", "O hemograma é um exame de sangue que avalia as células sanguíneas, como glóbulos vermelhos, glóbulos brancos e plaquetas, além de fornecer informações sobre a hemoglobina."),
+        "2": ("Tomografia", "A tomografia computadorizada é uma técnica de diagnóstico por imagem que combina radiografias tiradas em múltiplos ângulos para produzir imagens detalhadas."),
+        "3": ("Ressonância Magnética", "A ressonância magnética é uma técnica de imagem que utiliza campos magnéticos e ondas de rádio para criar imagens detalhadas dos órgãos e tecidos do corpo."),
+        "4": ("Eletrocardiograma", "O eletrocardiograma é um exame que registra a atividade elétrica do coração. É frequentemente usado para diagnosticar problemas cardíacos e monitorar a saúde do coração.")
     }
     return explicacoes.get(procedimento, ("Procedimento não reconhecido.", ""))
 
