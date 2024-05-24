@@ -1,11 +1,10 @@
-# Sprint 3 - Python
+# Sprint 4 - Python
             Jeferson Gabriel de Mendonça | 553149 
             Joseh Gabriel Trimboli Agra | 553094
             Larissa Estella Gonçalves dos Santos | 552695
             Lucas Masaki Nagahama | 553084 
             Victor Henrique Vilares Rodrigues | 554175
     
-# Cadastro de Pacientes e Envio de Mensagens pelo WhatsApp
 Este é um programa Python que permite cadastrar pacientes, agendar procedimentos médicos e enviar os detalhes do procedimento por mensagem pelo WhatsApp. O programa é interativo e orienta o usuário durante o processo de cadastro e agendamento. Os dados dos pacientes são armazenados em um arquivo externo JSON.
 
 ## Funcionalidades
